@@ -3,6 +3,7 @@ import {
   LightningBoltIcon,
   UserIcon,
   ChartBarIcon,
+  BoltIcon,
 } from '@heroicons/react/24/outline';
 
 export const tools = [
@@ -10,7 +11,7 @@ export const tools = [
     id: 'flow',
     title: 'UX Flow Hacker',
     description: 'Analyze and optimize user flows with AI.',
-    icon: LightningBoltIcon,
+    icon: BoltIcon,
   },
   {
     id: 'persona',
