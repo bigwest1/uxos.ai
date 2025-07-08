@@ -1,5 +1,6 @@
 // Individual clickable tool card with accessible interactions
 import React from 'react';
+import Link from 'next/link';
 
 export default function ToolCard({ tool }) {
   const Icon = tool.icon;
