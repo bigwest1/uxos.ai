@@ -1,15 +1,15 @@
-// App.jsx
+// Entry component connecting SearchScreen and ResultsScreen
 import React, { useState } from 'react';
-import SearchScreen from '../components/SearchScreen.jsx';
-import ResultsScreen from '../components/ResultsScreen.jsx';
-
+import SearchScreen from './SearchScreen';
+import ResultsScreen from './ResultsScreen';
+import './styles.css';
 
 export default function App() {
   const [searchTerm, setSearchTerm] = useState('');
   const [showResults, setShowResults] = useState(false);
 
-  const handleSearch = (query) => {
-    setSearchTerm(query);
+  const handleSearch = (term) => {
+    setSearchTerm(term);
     setShowResults(true);
   };
 

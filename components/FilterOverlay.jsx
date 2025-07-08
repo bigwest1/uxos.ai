@@ -1,6 +1,4 @@
-// FilterOverlay.jsx
 import React from 'react';
-
 
 export default function FilterOverlay({ onClose }) {
   return (

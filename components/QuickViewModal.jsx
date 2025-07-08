@@ -1,4 +1,3 @@
-// QuickViewModal.jsx
 import React from 'react';
 
 export default function QuickViewModal({ product, onClose }) {

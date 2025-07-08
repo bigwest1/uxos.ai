@@ -1,15 +1,3 @@
-/* styles.css */
-/* Tailwind base styles and a couple of custom utilities */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-/* Optional: custom focus outline for better accessibility */
-:focus-visible {
-  @apply outline-none ring-2 ring-offset-2 ring-orange-500;
-}
-
-
 :root {
   --brand-orange: #FF9900;
   --brand-dark: #232F3E;
@@ -34,6 +22,7 @@ select {
   font-family: inherit;
 }
 
+/* Search bar styles */
 .search-bar {
   width: 100%;
   max-width: 500px;
@@ -49,6 +38,7 @@ select {
   transition: box-shadow 0.2s;
 }
 
+/* Suggestions dropdown */
 .suggestions {
   position: absolute;
   background: #fff;
@@ -69,6 +59,33 @@ select {
   color: #fff;
 }
 
+/* Pinned suggestion chips */
+.pinned-chips {
+  margin-top: 0.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+}
+.chip {
+  background: var(--brand-orange);
+  color: #fff;
+  padding: 0.25rem 0.5rem;
+  border-radius: 12px;
+  font-size: 0.875rem;
+}
+
+/* Voice search button */
+.voice-btn {
+  background: var(--brand-orange);
+  border: none;
+  color: #fff;
+  padding: 0.5rem;
+  border-radius: 50%;
+  margin-left: 0.5rem;
+  cursor: pointer;
+}
+
+/* Results grid and cards */
 .results-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));

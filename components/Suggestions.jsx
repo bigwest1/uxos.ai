@@ -1,16 +1,15 @@
-// Suggestions.jsx
+// Suggestions list with pin and dismiss features
 import React from 'react';
 
-const sampleSuggestions = [
-  'Laptop stand',
-  'Wireless earbuds',
-  'Eco-friendly notebook',
-  'Bluetooth keyboard'
-];
+export default function Suggestions({ query, onSelect, onPin }) {
+  const sampleSuggestions = [
+    'Laptop stand',
+    'Wireless earbuds',
+    'Eco-friendly notebook',
+    'Bluetooth keyboard'
+  ];
 
-export default function Suggestions({ query, onSelect }) {
-  // Filter suggestion list by the current query
-  const filtered = sampleSuggestions.filter(item =>
+  const filtered = sampleSuggestions.filter((item) =>
     item.toLowerCase().includes(query.toLowerCase())
   );
 
@@ -23,13 +22,24 @@ export default function Suggestions({ query, onSelect }) {
       {filtered.map((item, idx) => (
         <li
           key={idx}
-          className="suggestion-item"
+          className="suggestion-item flex justify-between items-center"
           tabIndex="0"
           role="option"
           onClick={() => onSelect(item)}
           onKeyDown={(e) => e.key === 'Enter' && onSelect(item)}
         >
-          {item}
+          <span>{item}</span>
+          <button
+            type="button"
+            className="ml-2 text-sm"
+            aria-label="Pin suggestion"
+            onClick={(e) => {
+              e.stopPropagation();
+              onPin(item);
+            }}
+          >
+            📌
+          </button>
         </li>
       ))}
     </ul>

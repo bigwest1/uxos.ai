@@ -1,4 +1,3 @@
-// ResultsScreen.jsx
 import React, { useState } from 'react';
 import FilterOverlay from './FilterOverlay';
 import QuickViewModal from './QuickViewModal';
@@ -17,8 +16,8 @@ export default function ResultsScreen({ onBack }) {
 
   const togglePin = (product) => {
     setPinned((prev) =>
-      prev.find(p => p.id === product.id)
-        ? prev.filter(p => p.id !== product.id)
+      prev.find((p) => p.id === product.id)
+        ? prev.filter((p) => p.id !== product.id)
         : [...prev, product]
     );
   };
@@ -31,7 +30,7 @@ export default function ResultsScreen({ onBack }) {
       </header>
 
       <div className="results-grid">
-        {products.map(product => (
+        {products.map((product) => (
           <article key={product.id} className="product-card">
             <img src={`/images/${product.id}.jpg`} alt={product.name} />
             <div className="product-actions">
