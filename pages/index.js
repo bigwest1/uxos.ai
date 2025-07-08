@@ -1,4 +1,5 @@
 // pages/index.js
+import App from '../pages/App';
 
 export async function getServerSideProps() {
   const { PrismaClient } = await import('@prisma/client')
@@ -18,15 +19,6 @@ export async function getServerSideProps() {
   }
 }
 
-export default function Home({ users }) {
-  return (
-    <div>
-      <h1>Hello UXOS</h1>
-      <ul>
-        {users.map(user => (
-          <li key={user.id}>{user.email}</li>
-        ))}
-      </ul>
-    </div>
-  )
+export default function Home() {
+  return <App />;
 }
