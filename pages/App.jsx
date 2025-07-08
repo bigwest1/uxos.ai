@@ -3,9 +3,7 @@ import SearchScreen from './SearchScreen';
 import ResultsScreen from './ResultsScreen';
 import '@/styles/globals.css';
 import '@/styles/style.css';
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+
 
 class ErrorBoundary extends React.Component {
   constructor(props) {
