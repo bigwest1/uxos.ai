@@ -11,9 +11,9 @@ export default function ToolCard({ tool }) {
         aria-labelledby={`${tool.id}-title`}
         className="relative rounded-lg border border-gray-200 bg-white p-6 shadow-sm transition hover:shadow-lg"
       >
-         <div className="flex h-12 w-12 items-center justify-center rounded-full bg-brand-dark text-white">
-          <Icon className="h-6 w-6" aria-hidden="true" />
-        </div>
+<div className="flex h-12 w-12 items-center justify-center rounded-full bg-brand-dark text-white">
+  <Icon className="h-6 w-6" aria-hidden="true" />
+</div>
         <h2
           id={`${tool.id}-title`}
           className="mt-4 text-lg font-semibold text-brand-dark"

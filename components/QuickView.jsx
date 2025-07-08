@@ -8,11 +8,8 @@ export default function QuickView({ product, onClose }) {
     >
       <div className="bg-white p-6 rounded w-80 shadow-lg">
         <h3 className="font-semibold text-lg mb-2">{product.title}</h3>
-        <img
-          src={product.thumbnail}
-          alt={product.title}
-          className="h-40 w-full object-cover rounded"
-        />
+        <img src={`/images/${product.id}.jpg`} alt={product.name} style={{ width: '100%' }} />
+
         <p className="mt-2 text-sm text-gray-600">by {product.author}</p>
         <p className="text-sm">Rating: {product.rating}★</p>
         <p className="text-sm">
