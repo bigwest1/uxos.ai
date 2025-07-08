@@ -1,7 +1,7 @@
 // App.jsx
 import React, { useState } from 'react';
-import SearchScreen from '/components/SearchScreen.jsx';
-import ResultsScreen from '/components/ResultsScreen.jsx';
+import SearchScreen from '../components/SearchScreen.jsx';
+import ResultsScreen from '../components/ResultsScreen.jsx';
 
 
 export default function App() {

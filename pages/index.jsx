@@ -3,7 +3,7 @@ import { products } from '../data/products';
 import SearchBar from '../components/SearchBar';
 import ProductCard from '../components/ProductCard';
 import FilterSidebar from '../components/FilterSidebar';
-import Pagination from '../components/Paginantion';
+import Pagination from '../components/Pagination';
 
 /** Main product search page */
 export default function Home() {
