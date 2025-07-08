@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import QuickView from './QuickView';
 
+
+
 /** Displays a single product with quick view on click/hover */
 export default function ProductCard({ product }) {
   const [showPreview, setShowPreview] = useState(false);

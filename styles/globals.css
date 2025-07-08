@@ -1,12 +1,16 @@
-/* styles.css */
-/* Tailwind base styles and a couple of custom utilities */
+/* Base styles using Tailwind layers */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Optional: custom focus outline for better accessibility */
-:focus-visible {
-  @apply outline-none ring-2 ring-offset-2 ring-orange-500;
+html,
+body {
+  @apply bg-gray-50 text-brand-dark font-sans;
+}
+
+/* Accessible focus outline */
+*:focus-visible {
+  @apply outline-none ring-2 ring-brand-orange ring-offset-2;
 }
 
 

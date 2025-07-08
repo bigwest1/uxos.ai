@@ -1,6 +1,7 @@
 // FilterOverlay.jsx
 import React from 'react';
 
+
 export default function FilterOverlay({ onClose }) {
   return (
     <div className="filter-overlay" role="dialog" aria-modal="true">
