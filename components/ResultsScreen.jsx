@@ -32,7 +32,7 @@ export default function ResultsScreen({ onBack }) {
       <div className="results-grid">
         {products.map((product) => (
           <article key={product.id} className="product-card">
-            <img src={`/images/${product.id}.jpg`} alt={product.name} />
+            <img src={`/images/${product.id}.jpg`} alt={product.name} className="thumbnail" />
             <div className="product-actions">
               <button
                 className="action-button"

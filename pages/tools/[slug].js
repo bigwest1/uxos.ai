@@ -25,7 +25,7 @@ export default function ToolPage({ tool }) {
       </Head>
       <main className="flex min-h-screen flex-col items-center justify-center p-8">
         <div className="flex flex-col items-center space-y-4 text-center">
-          <div className="flex h-16 w-16 items-center justify-center rounded-full bg-brand-dark text-white">
+                    <div className="flex h-16 w-16 items-center justify-center rounded-full bg-brand-dark text-white logo-small">
             <Icon className="h-8 w-8" aria-hidden="true" />
           </div>
           <h1 className="text-2xl font-bold text-brand-dark">{tool.title}</h1>
