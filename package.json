@@ -17,6 +17,7 @@
     "@prisma/client": "^6.11.1",
     "@tailwindcss/postcss7-compat": "^2.2.17",
     "add": "^2.0.6",
+    "bson": "^6.10.4",
     "install": "^0.13.0",
     "next": "^14.0.0",
     "npm": "^11.4.2",

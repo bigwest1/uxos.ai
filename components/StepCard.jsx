@@ -25,13 +25,22 @@ export default function StepCard({ step, index }) {
       </button>
       {open && (
         <div className="space-y-3 border-t p-4">
-          {step.image && (
-            <img
-              src={step.image}
-              alt=""
-              className="h-40 w-full rounded object-cover"
-            />
-          )}
+          {step.frames
+            ? step.frames.map((src, i) => (
+                <img
+                  key={i}
+                  src={src}
+                  alt=""
+                  className="h-40 w-full rounded object-cover"
+                />
+              ))
+            : step.image && (
+                <img
+                  src={step.image}
+                  alt=""
+                  className="h-40 w-full rounded object-cover"
+                />
+              )}
           <p className="text-sm text-gray-700">{step.summary}</p>
           {step.rating && (
             <div className="flex items-center gap-1">

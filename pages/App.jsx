@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import SearchScreen from './SearchScreen';
-import ResultsScreen from './ResultsScreen';
+import SearchScreen from '../components/SearchScreen';
+import ResultsScreen from '../components/ResultsScreen';
 
 
 class ErrorBoundary extends React.Component {

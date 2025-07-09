@@ -1,4 +1,4 @@
-import '../styles/gloabal.css'
+import '../styles/global.css'
 import ErrorBoundary from '../components/ErrorBoundary';
 
 function App({ Component, pageProps }) {
