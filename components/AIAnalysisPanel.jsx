@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { OpenAI } from 'openai';
 
 export default function AIAnalysisPanel({ steps, onResult }) {
   const [loading, setLoading] = useState(false);
@@ -9,20 +8,25 @@ export default function AIAnalysisPanel({ steps, onResult }) {
     setLoading(true);
     setError('');
     try {
-      const openai = new OpenAI({ apiKey: process.env.NEXT_PUBLIC_OPENAI_KEY });
-      const messages = [
-        {
-          role: 'system',
-          content:
-            'You are a senior UX analyst. Review each step and suggest improvements.',
-        },
-        { role: 'user', content: JSON.stringify(steps) },
-      ];
-      const chat = await openai.chat.completions.create({
-        model: 'gpt-4',
-        messages,
+      const res = await fetch('/api/analyze', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ steps }),
       });
-      onResult(JSON.parse(chat.choices[0].message.content));
+
+      if (!res.ok || !res.body) throw new Error('Request failed');
+
+      const reader = res.body.getReader();
+      const decoder = new TextDecoder();
+      let text = '';
+
+      while (true) {
+        const { value, done } = await reader.read();
+        if (done) break;
+        text += decoder.decode(value, { stream: true });
+      }
+
+      onResult(JSON.parse(text));
     } catch (err) {
       setError('Analysis failed');
       console.error(err);
