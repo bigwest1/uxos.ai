@@ -1,7 +1,5 @@
 // Prominent, accessible download button with subtle animation
 import React from 'react';
-import { BoltIcon, UserIcon, ChartBarIcon } from "@heroicons/react/24/outline";
-
 
 export default function DownloadButton() {
   return (
