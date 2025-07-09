@@ -1,9 +1,8 @@
 // Example tool data with Heroicons
 import {
-  LightningBoltIcon,
+  BoltIcon,
   UserIcon,
   ChartBarIcon,
-  BoltIcon,
 } from '@heroicons/react/24/outline';
 
 export const tools = [
