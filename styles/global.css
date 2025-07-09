@@ -1,212 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import './components/ui.css';
+
+/* Design Tokens */
 :root {
-  --brand-orange: #FF9900;
-  --brand-dark: #232F3E;
-  font-family: 'Amazon Ember', Arial, sans-serif;
+  --font-sans: 'Amazon Ember', system-ui, sans-serif;
 }
 
-html {
-  scroll-behavior: smooth;
-}
+/* Base Styles */
+html { scroll-behavior: smooth; }
+body { @apply m-0 bg-gray-900 text-gray-100 font-sans; }
 
-body {
-  margin: 0;
-  background: #1F1F23;
-  color: #E4E4E7;
-  font-feature-settings: 'cv03', 'cv04', 'cv11';
-}
+/* Header Styles */
+header { @apply bg-gray-800 text-indigo-400 p-6 text-center shadow-lg; }
 
-header {
-  background: #111;
-  color: #FFD369;
-  padding: 1.5rem;
-  text-align: center;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.5);
-}
-
-button,
-input,
-select {
-  font-family: inherit;
-}
-
-/* Search bar styles */
-.search-bar {
-  width: 100%;
-  max-width: 500px;
-  padding: 0.75rem;
-  border: 2px solid var(--brand-dark);
-  border-radius: 4px;
-}
-
-.search-bar:focus {
-  outline: none;
-  border-color: var(--brand-orange);
-  box-shadow: 0 0 4px var(--brand-orange);
-  transition: box-shadow 0.2s;
-}
-
-/* Suggestions dropdown */
-.suggestions {
-  position: absolute;
-  background: #fff;
-  border: 1px solid #ccc;
-  width: 100%;
-  max-width: 500px;
-  z-index: 10;
-}
-
-.suggestion-item {
-  padding: 0.5rem;
-  cursor: pointer;
-}
-
-.suggestion-item:hover,
-.suggestion-item:focus {
-  background: var(--brand-orange);
-  color: #fff;
-}
-
-/* Pinned suggestion chips */
-.pinned-chips {
-  margin-top: 0.5rem;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.25rem;
-}
-.chip {
-  background: var(--brand-orange);
-  color: #fff;
-  padding: 0.25rem 0.5rem;
-  border-radius: 12px;
-  font-size: 0.875rem;
-}
-
-/* Voice search button */
-.voice-btn {
-  background: var(--brand-orange);
-  border: none;
-  color: #fff;
-  padding: 0.5rem;
-  border-radius: 50%;
-  margin-left: 0.5rem;
-  cursor: pointer;
-}
-
-/* Results grid and cards */
-.results-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 1rem;
-  padding: 1rem;
-}
-
-.product-card {
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  overflow: hidden;
-  position: relative;
-}
-
-.product-card button {
-  background: var(--brand-orange);
-  color: #fff;
-  border: none;
-  padding: 0.5rem;
-  width: 100%;
-  cursor: pointer;
-}
-
-.product-actions {
-  position: absolute;
-  top: 0.5rem;
-  right: 0.5rem;
-  display: flex;
-  gap: 0.25rem;
-}
-
-.action-button {
-  background: rgba(255, 255, 255, 0.9);
-  border: none;
-  padding: 0.25rem 0.5rem;
-  cursor: pointer;
-}
-
-.action-button:hover,
-.action-button:focus {
-  background: var(--brand-orange);
-  color: #fff;
-}
-
-.compare-tray {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: var(--brand-dark);
-  color: #fff;
-  padding: 0.5rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.filter-button {
-  position: fixed;
-  bottom: 1rem;
-  right: 1rem;
-  background: var(--brand-orange);
-  color: #fff;
-  border: none;
-  padding: 0.75rem;
-  border-radius: 50%;
-  cursor: pointer;
-}
-
-.filter-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.6);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 50;
-}
-
-.filter-panel {
-  background: #fff;
-  padding: 1rem;
-  border-radius: 4px;
-  width: 90%;
-  max-width: 400px;
-}
-
-.product-card {
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  overflow: hidden;
-  position: relative;
-}
-
-/* Common image/logo constraints */
-.logo-small {
-  max-width: 3rem;
-  max-height: 3rem;
-}
-
-.thumbnail {
-  width: 100%;
-  height: 10rem;
-  object-fit: cover;
-}
-
+/* Fade-in animation */
 @keyframes fade-in {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
 }
-
-.animate-fade-in {
-  animation: fade-in 0.6s ease-out both;
-}
+.animate-fade-in { animation: fade-in 0.6s ease-out both; }

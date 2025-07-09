@@ -33,7 +33,7 @@ export default function AIAnalysisPanel({ steps, onResult }) {
   };
 
   return (
-    <section className="space-y-6 rounded-xl bg-gray-800 p-8 shadow-2xl">
+    <section className="card space-y-6">
       <h2 className="text-2xl font-bold text-white">2. AI-Powered Analysis</h2>
       {!analysis ? (
         <div className="space-y-4">

@@ -3,6 +3,7 @@ import Head from 'next/head';
 import { tools } from '../data/tools.js';
 import ToolMenu from '../components/ToolMenu.jsx';
 import DownloadButton from '../components/DownloadButton.jsx';
+import FadeInSection from '../components/FadeInSection';
 
 export default function Home() {
   return (
@@ -17,8 +18,9 @@ export default function Home() {
 
           <main className="min-h-screen flex flex-col">
         {/* Hero section */}
-        <section className="bg-gradient-to-br from-gray-900 to-gray-800 text-gray-100">
-          <div className="container mx-auto flex flex-col-reverse lg:flex-row items-center gap-12 px-6 py-20 lg:py-32">
+        <FadeInSection>
+          <section className="bg-gradient-to-br from-gray-900 to-gray-800 text-gray-100">
+            <div className="container mx-auto flex flex-col-reverse lg:flex-row items-center gap-12 py-20 lg:py-32">
             <div className="lg:w-1/2 space-y-6">
               <h1 className="text-5xl font-extrabold leading-tight md:text-6xl animate-fade-in">
                 Hack Your UX Flow with AI
@@ -30,13 +32,13 @@ export default function Home() {
               <div className="mt-6 flex flex-wrap gap-4">
                 <a
                   href="#tools"
-                  className="rounded-full bg-indigo-500 px-6 py-3 text-lg font-semibold text-white shadow-lg transition-transform hover:scale-105"
+                  className="btn btn-primary transition-transform hover:scale-105"
                 >
                   Get Started
                 </a>
                 <a
                   href="/"
-                  className="rounded-full border border-indigo-500 px-6 py-3 text-lg font-semibold text-indigo-400 hover:bg-indigo-500 hover:text-white transition-colors"
+                  className="btn btn-outline"
                 >
                   Download Toolkit
                 </a>
@@ -46,17 +48,22 @@ export default function Home() {
               <div className="w-full h-64 rounded-lg bg-gray-700 animate-pulse" />
             </div>
           </div>
-        </section>
+          </section>
+        </FadeInSection>
 
         {/* Tool menu */}
-        <section id="tools" className="mx-auto w-full max-w-5xl px-4 py-12">
-          <ToolMenu tools={tools} />
-        </section>
+        <FadeInSection>
+          <section id="tools" className="container mx-auto py-16">
+            <ToolMenu tools={tools} />
+          </section>
+        </FadeInSection>
 
         {/* Download button */}
-        <section className="py-12 text-center">
-          <DownloadButton />
-        </section>
+        <FadeInSection>
+          <section className="py-12 text-center">
+            <DownloadButton />
+          </section>
+        </FadeInSection>
       </main>
     </>
   );

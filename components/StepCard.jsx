@@ -5,7 +5,7 @@ export default function StepCard({ step, index }) {
   const [open, setOpen] = useState(true);
 
   return (
-    <div className="rounded-xl border border-gray-700 bg-gray-800 shadow-lg">
+    <div className="card">
       <button
         className="flex w-full items-center justify-between p-5 text-left hover:bg-gray-700 transition-colors"
         onClick={() => setOpen(!open)}

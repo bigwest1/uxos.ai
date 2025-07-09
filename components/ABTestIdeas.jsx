@@ -2,7 +2,7 @@ import { LightBulbIcon } from '@heroicons/react/24/outline';
 
 export default function ABTestIdeas({ ideas }) {
   return (
-    <section className="space-y-6 rounded-xl bg-gray-800 p-8 shadow-2xl">
+    <section className="card space-y-6">
       <h2 className="text-2xl font-bold text-white">4. A/B Test Ideas</h2>
       <ul className="space-y-3">
         {ideas.map((idea, i) => (

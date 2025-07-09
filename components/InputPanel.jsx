@@ -53,7 +53,7 @@ export default function InputPanel({ onSubmit }) {
   };
 
   return (
-    <section className="space-y-6 rounded-xl border border-gray-700 bg-gray-800 p-8 shadow-2xl">
+    <section className="card space-y-6">
       <h2 className="text-2xl font-bold text-white">1. Competitor Flow</h2>
       <textarea
         className="w-full rounded-lg bg-gray-700 border border-gray-600 p-4 text-gray-100 placeholder-gray-400 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500"

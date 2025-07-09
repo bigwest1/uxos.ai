@@ -5,7 +5,7 @@ export default function ToolCard({ tool }) {
   return (
     <Link
       href={`/tools/${tool.id}`}
-      className="group block rounded-xl bg-gray-800 p-8 text-center transition-transform hover:-translate-y-2 hover:shadow-2xl"
+      className="group block card text-center transition-transform hover:-translate-y-2"
     >
       <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center text-indigo-400">
         <Icon className="h-12 w-12" aria-hidden />

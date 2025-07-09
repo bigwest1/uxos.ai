@@ -6,6 +6,7 @@ import JourneyMap from '../../components/JourneyMap';
 import AIAnalysisPanel from '../../components/AIAnalysisPanel';
 import RedesignedFlow from '../../components/RedesignedFlow';
 import ABTestIdeas from '../../components/ABTestIdeas';
+import FadeInSection from '../../components/FadeInSection';
 
 export async function getStaticPaths() {
   const paths = tools.map((tool) => ({ params: { slug: tool.id } }));
@@ -84,17 +85,27 @@ function FlowHacker() {
       </Head>
       <main className="mx-auto max-w-5xl space-y-8 p-6 font-sans">
         <h1 className="text-3xl font-bold text-brand-dark">UX Flow Hacker</h1>
-        <InputPanel onSubmit={handleInput} />
+        <FadeInSection>
+          <InputPanel onSubmit={handleInput} />
+        </FadeInSection>
         {steps.length > 0 && (
           <>
-            <JourneyMap steps={steps} onReorder={setSteps} />
-            <AIAnalysisPanel steps={steps} onResult={handleAnalysisResult} />
+            <FadeInSection className="mt-8">
+              <JourneyMap steps={steps} onReorder={setSteps} />
+            </FadeInSection>
+            <FadeInSection className="mt-8">
+              <AIAnalysisPanel steps={steps} onResult={handleAnalysisResult} />
+            </FadeInSection>
           </>
         )}
         {analysis ? (
           <>
-            <RedesignedFlow steps={analysis.improvedSteps} />
-            <ABTestIdeas ideas={analysis.abIdeas} />
+            <FadeInSection className="mt-8">
+              <RedesignedFlow steps={analysis.improvedSteps} />
+            </FadeInSection>
+            <FadeInSection className="mt-8">
+              <ABTestIdeas ideas={analysis.abIdeas} />
+            </FadeInSection>
           </>
         ) : null}
       </main>
