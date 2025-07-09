@@ -3,6 +3,31 @@ import Head from 'next/head';
 import { tools } from '../data/tools.js';
 import ToolMenu from '../components/ToolMenu.jsx';
 import DownloadButton from '../components/DownloadButton.jsx';
+import { useUser } from '@clerk/nextjs';
+import ThemeSwitcher from '../components/ThemeSwitcher.jsx';
+
+/**
+ * Show a subscription CTA and redirect to Stripe checkout.
+ */
+function SubscribeButton() {
+  const { user } = useUser();
+  const handleSubscribe = async () => {
+    if (!user) return;
+    const res = await fetch('/api/checkout-session', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ priceId: process.env.NEXT_PUBLIC_STRIPE_PRICE_ID, email: user.emailAddresses[0].emailAddress }),
+    });
+    const { sessionId } = await res.json();
+    const stripe = await import('@stripe/stripe-js').then((m) => m.loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY));
+    stripe.redirectToCheckout({ sessionId });
+  };
+  return (
+    <button onClick={handleSubscribe} className="btn btn-primary">
+      Subscribe
+    </button>
+  );
+}
 import FadeInSection from '../components/FadeInSection';
 
 export default function Home() {
@@ -29,20 +54,22 @@ export default function Home() {
                 Instantly analyze and redesign competitor flows to boost conversions
                 and delight users with our AI‑powered toolkit.
               </p>
-              <div className="mt-6 flex flex-wrap gap-4">
-                <a
-                  href="#tools"
-                  className="btn btn-primary transition-transform hover:scale-105"
-                >
-                  Get Started
-                </a>
-                <a
-                  href="/"
-                  className="btn btn-outline"
-                >
-                  Download Toolkit
-                </a>
-              </div>
+            <div className="mt-6 flex flex-wrap gap-4 items-center">
+              <a
+                href="#tools"
+                className="btn btn-primary transition-transform hover:scale-105"
+              >
+                Get Started
+              </a>
+              <a
+                href="/"
+                className="btn btn-outline"
+              >
+                Download Toolkit
+              </a>
+              <ThemeSwitcher />
+              <SubscribeButton />
+            </div>
             </div>
             <div className="lg:w-1/2">
               <div className="w-full h-64 rounded-lg bg-gray-700 animate-pulse" />

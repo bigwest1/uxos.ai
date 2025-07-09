@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "next dev",
+    "summarize": "node scripts/summarizeConversation.js",
     "build": "next build",
     "start": "next start"
   },
@@ -27,7 +28,12 @@
     "react-beautiful-dnd": "^13.1.1",
     "react-dom": "^18.3.1",
     "stripe": "^12.0.0",
-    "yarn": "^1.22.22"
+    "@stripe/stripe-js": "^2.0.0",
+    "@stripe/react-stripe-js": "^2.1.0",
+    "yarn": "^1.22.22",
+    "bullmq": "^2.0.0",
+    "ioredis": "^5.0.0",
+    // removed Pinecone dependency to leverage local embedding retrieval via Prisma
   },
   "devDependencies": {
     "@types/node": "^20.0.0",

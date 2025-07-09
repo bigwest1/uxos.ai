@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import PromptTemplateSelector from './PromptTemplateSelector';
+import ShortcutHotkeys from './ShortcutHotkeys';
 
 export default function InputPanel({ onSubmit }) {
   const [text, setText] = useState('');
@@ -52,8 +54,16 @@ export default function InputPanel({ onSubmit }) {
     onSubmit(steps);
   };
 
+  const handleClear = () => {
+    setText('');
+    setLink('');
+    setFrames([]);
+  };
+
   return (
-    <section className="card space-y-6">
+    <>
+      <ShortcutHotkeys onSend={handleSubmit} onClear={handleClear} />
+      <section className="card space-y-6">
       <h2 className="text-2xl font-bold text-white">1. Competitor Flow</h2>
       <textarea
         className="w-full rounded-lg bg-gray-700 border border-gray-600 p-4 text-gray-100 placeholder-gray-400 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500"
@@ -62,6 +72,7 @@ export default function InputPanel({ onSubmit }) {
         value={text}
         onChange={(e) => setText(e.target.value)}
       />
+      <PromptTemplateSelector onSelect={(tpl) => setText((t) => `${tpl}: ${t}`)} />
       <input
         className="w-full rounded-lg bg-gray-700 border border-gray-600 p-4 text-gray-100 placeholder-gray-400 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500"
         type="text"

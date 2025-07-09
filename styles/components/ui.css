@@ -1,0 +1,19 @@
+@tailwind components;
+
+@layer components {
+  /* Button variants */
+  .btn {
+    @apply rounded-full px-6 py-3 font-semibold transition;
+  }
+  .btn-primary {
+    @apply bg-brand-indigo text-white shadow-lg hover:bg-brand-indigo/90;
+  }
+  .btn-outline {
+    @apply border border-brand-indigo text-brand-indigo hover:bg-brand-indigo hover:text-white;
+  }
+
+  /* Card container */
+  .card {
+    @apply rounded-xl bg-gray-800 shadow-2xl p-6;
+  }
+}

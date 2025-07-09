@@ -1,39 +1,49 @@
 import { useState } from 'react';
 import { StarIcon, ExclamationCircleIcon } from '@heroicons/react/24/solid';
+import TypingIndicator from './TypingIndicator';
+import FeedbackControls from './FeedbackControls';
+import ThemeSwitcher from './ThemeSwitcher';
 
 export default function AIAnalysisPanel({ steps, onResult }) {
   const [analysis, setAnalysis] = useState(null);
+  const [analysisCtrl, setAnalysisCtrl] = useState({ state: 'idle', progress: 0 });
   const [loading, setLoading] = useState(false);
 
   const handleAnalyze = async () => {
     setLoading(true);
-    // Simulate AI-driven analysis
-    await new Promise((r) => setTimeout(r, 800));
-    const summary =
-      'Identified friction points around ambiguous labels and lengthy forms. Users may drop off at steps with high cognitive load.';
-    const stepInsights = steps.map((s, i) => ({
-      title: s.title,
-      rating: Math.floor(Math.random() * 3) + 3,
-      insight: `Simplify “${s.title}” to reduce friction.`,
-    }));
-    const improvedSteps = steps.map((s) => ({
-      title: s.title,
-      summary: `Optimized ${s.title.toLowerCase()} with clearer copy and streamlined actions.`,
-      rating: Math.floor(Math.random() * 3) + 4,
-    }));
-    const abIdeas = [
-      'Test single vs. multi-column layout on checkout',
-      'Emphasize social proof near CTA',
-      'Use progressive disclosure for advanced options',
-    ];
-    const data = { summary, stepInsights, improvedSteps, abIdeas };
-    setAnalysis(data);
-    onResult({ improvedSteps, abIdeas });
-    setLoading(false);
+    // Dispatch job to queue
+    const res = await fetch('/api/analysis', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ steps }),
+    });
+    const { jobId } = await res.json();
+    // Poll job status
+    let poll;
+    const pollJob = async () => {
+      const status = await fetch(`/api/analysis/${jobId}`);
+      const { state, progress, result } = await status.json();
+      setLoading(false);
+      setAnalysisCtrl((prev) => ({ state, progress }));
+      if (state === 'completed' && result) {
+        setAnalysis({
+          summary: result.summary,
+          stepInsights: result.stepInsights,
+          improvedSteps: result.improvedSteps,
+          abIdeas: result.abIdeas,
+        });
+        onResult({ improvedSteps: result.improvedSteps, abIdeas: result.abIdeas });
+        clearInterval(poll);
+      }
+    };
+    poll = setInterval(pollJob, 1000);
   };
 
   return (
     <section className="card space-y-6">
+      <div className="flex justify-end">
+        <ThemeSwitcher />
+      </div>
       <h2 className="text-2xl font-bold text-white">2. AI-Powered Analysis</h2>
       {!analysis ? (
         <div className="space-y-4">
@@ -43,9 +53,9 @@ export default function AIAnalysisPanel({ steps, onResult }) {
           <button
             onClick={handleAnalyze}
             disabled={loading}
-            className="rounded-lg bg-indigo-500 px-6 py-3 font-semibold text-white shadow hover:bg-indigo-600 disabled:opacity-50 transition-all"
+            className="rounded-lg bg-indigo-500 px-6 py-3 font-semibold text-white shadow hover:bg-indigo-600 disabled:opacity-50 transition-all flex items-center justify-center"
           >
-            {loading ? 'Analyzing...' : 'Run Analysis'}
+            {loading ? <TypingIndicator /> : 'Run Analysis'}
           </button>
         </div>
       ) : (
@@ -69,6 +79,7 @@ export default function AIAnalysisPanel({ steps, onResult }) {
               </div>
             ))}
           </div>
+          <FeedbackControls onFeedback={(f) => console.log('Analysis feedback:', f)} />
         </div>
       )}
     </section>

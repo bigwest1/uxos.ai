@@ -6,6 +6,7 @@ import JourneyMap from '../../components/JourneyMap';
 import AIAnalysisPanel from '../../components/AIAnalysisPanel';
 import RedesignedFlow from '../../components/RedesignedFlow';
 import ABTestIdeas from '../../components/ABTestIdeas';
+import ChatPanel from '../../components/ChatPanel';
 import FadeInSection from '../../components/FadeInSection';
 
 export async function getStaticPaths() {
@@ -25,6 +26,18 @@ export async function getStaticProps({ params }) {
 export default function ToolPage({ tool }) {
   if (tool.id === 'flow') {
     return <FlowHacker />;
+  }
+  if (tool.id === 'chat') {
+    return (
+      <>
+        <Head>
+          <title>AI Chat - UXOS Tools</title>
+        </Head>
+        <main className="mx-auto max-w-5xl p-6">
+          <ChatPanel />
+        </main>
+      </>
+    );
   }
   const found = tools.find((t) => t.id === tool.id);
   const Icon = found.icon;

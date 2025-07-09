@@ -3,6 +3,7 @@ import {
   BoltIcon,
   UserIcon,
   ChartBarIcon,
+  ChatBubbleLeftEllipsisIcon,
 } from '@heroicons/react/24/outline';
 
 export const tools = [
@@ -11,6 +12,12 @@ export const tools = [
     title: 'UX Flow Hacker',
     description: 'Analyze and optimize user flows with AI.',
     icon: BoltIcon,
+  },
+  {
+    id: 'chat',
+    title: 'AI Chat',
+    description: 'Open-ended chat with AI memory and streaming responses.',
+    icon: ChatBubbleLeftEllipsisIcon,
   },
   {
     id: 'persona',
