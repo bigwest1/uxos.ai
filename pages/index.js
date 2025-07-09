@@ -1,8 +1,8 @@
 // Main home screen assembling the menu and download button
 import Head from 'next/head';
-import { tools } from '../data/tools';
-import ToolMenu from '../components/ToolMenu';
-import DownloadButton from '../components/DownloadButton';
+import { tools } from '../data/tools.js';
+import ToolMenu from '../components/ToolMenu.jsx';
+import DownloadButton from '../components/DownloadButton.jsx';
 
 export default function Home() {
   return (
@@ -15,24 +15,34 @@ export default function Home() {
         />
       </Head>
 
-      <main className="flex min-h-screen flex-col items-center justify-start">
-        {/* Header */}
-        <header className="w-full bg-brand-dark py-8 text-center text-white">
-          <h1 className="text-3xl font-bold">Welcome to UXOS Tools</h1>
-          <p className="mt-2 text-lg text-gray-300">
-            Choose a tool to start crafting great experiences
-          </p>
-        </header>
+          <main className="min-h-screen flex flex-col">
+        {/* Hero section */}
+        <section className="relative bg-gradient-to-b from-brand-dark to-gray-900 text-white text-center">
+          <div className="mx-auto max-w-5xl px-4 py-20">
+            <h1 className="text-4xl font-bold sm:text-5xl animate-fade-in">
+              Level Up Your UX Workflow
+            </h1>
+            <p className="mt-4 text-lg text-gray-300">
+              Explore AI-powered tools to craft exceptional experiences
+            </p>
+            <a
+              href="#tools"
+              className="mt-8 inline-block rounded-md bg-brand-orange px-6 py-3 font-semibold shadow-lg transition-transform duration-300 hover:scale-105"
+            >
+              Explore Tools
+            </a>
+          </div>
+        </section>
 
         {/* Tool menu */}
-        <div className="mt-10 w-full">
+        <section id="tools" className="mx-auto w-full max-w-5xl px-4 py-12">
           <ToolMenu tools={tools} />
-        </div>
+        </section>
 
         {/* Download button */}
-        <div className="mt-12">
+        <section className="py-12 text-center">
           <DownloadButton />
-        </div>
+        </section>
       </main>
     </>
   );

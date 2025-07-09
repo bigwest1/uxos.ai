@@ -5,11 +5,13 @@ import Link from 'next/link';
 export default function ToolCard({ tool }) {
   const Icon = tool.icon;
   return (
-    <Link href={`/tools/${tool.id}`}
-      className="group block focus:outline-none focus:ring-2 focus:ring-brand-orange">
+    <Link
+      href={`/tools/${tool.id}`}
+      className="group block focus:outline-none focus:ring-2 focus:ring-brand-orange"
+    >
       <article
         aria-labelledby={`${tool.id}-title`}
-        className="relative rounded-lg border border-gray-200 bg-white p-6 shadow-sm transition hover:shadow-lg"
+        className="relative rounded-lg border border-gray-200 bg-white p-6 shadow-sm transition-transform duration-300 hover:-translate-y-1 hover:shadow-lg"
       >
 <div className="flex h-12 w-12 items-center justify-center rounded-full bg-brand-dark text-white logo-small">
   <Icon className="h-6 w-6" aria-hidden="true" />
