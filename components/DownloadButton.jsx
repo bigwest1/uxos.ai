@@ -1,13 +1,10 @@
-// Prominent, accessible download button with subtle animation
-import React from 'react';
-
 export default function DownloadButton() {
   return (
     <a
-      href="/download"
-      className="inline-block rounded-md bg-brand-orange px-6 py-3 font-semibold text-white shadow transition hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-brand-orange focus:ring-offset-2"
+      href="https://github.com/bigwest1/uxos.ai/archive/refs/heads/main.zip"
+      className="inline-block rounded bg-brand-orange px-6 py-3 font-semibold text-white shadow transition-colors hover:bg-brand-dark"
     >
-      Get the App
+      Download UXOS Toolkit
     </a>
   );
 }

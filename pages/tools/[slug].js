@@ -97,14 +97,6 @@ function FlowHacker() {
             <ABTestIdeas ideas={analysis.abIdeas} />
           </>
         ) : null}
-        {!analysis && steps.length > 0 && (
-          <button
-            onClick={() => setAnalysis(mockAnalysis)}
-            className="rounded bg-gray-200 px-3 py-1 text-sm"
-          >
-            Load Mock Results
-          </button>
-        )}
       </main>
     </>
   );

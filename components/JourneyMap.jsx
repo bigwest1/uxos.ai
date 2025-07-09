@@ -4,27 +4,25 @@ import StepCard from './StepCard';
 export default function JourneyMap({ steps, onReorder }) {
   const handleDragEnd = (result) => {
     if (!result.destination) return;
-    const reordered = Array.from(steps);
-    const [removed] = reordered.splice(result.source.index, 1);
-    reordered.splice(result.destination.index, 0, removed);
-    onReorder(reordered);
+    const items = Array.from(steps);
+    const [moved] = items.splice(result.source.index, 1);
+    items.splice(result.destination.index, 0, moved);
+    onReorder(items);
   };
 
   return (
-    <section className="space-y-4">
-      <h2 className="text-xl font-semibold text-brand-dark">
-        2. Journey map
-      </h2>
+    <section className="space-y-6">
+      <h2 className="text-xl font-semibold text-brand-dark">Original Flow</h2>
       <DragDropContext onDragEnd={handleDragEnd}>
-        <Droppable droppableId="steps">
+        <Droppable droppableId="journey">
           {(provided) => (
             <div
               {...provided.droppableProps}
               ref={provided.innerRef}
-              className="space-y-3"
+              className="space-y-4"
             >
               {steps.map((step, idx) => (
-                <Draggable key={idx} draggableId={String(idx)} index={idx}>
+                <Draggable key={idx} draggableId={`step-${idx}`} index={idx}>
                   {(prov) => (
                     <div
                       ref={prov.innerRef}

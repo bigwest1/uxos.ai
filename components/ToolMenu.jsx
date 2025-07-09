@@ -1,12 +1,9 @@
-// Responsive grid menu displaying all available tools
-import React from 'react';
 import ToolCard from './ToolCard';
-import { tools } from '../data/tools';
 
-export default function ToolMenu() {
+export default function ToolMenu({ tools }) {
   return (
-    <div className="grid grid-cols-2 gap-6">
-     {tools.map((tool) => (
+    <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {tools.map((tool) => (
         <ToolCard key={tool.id} tool={tool} />
       ))}
     </div>

@@ -1,30 +1,18 @@
-// Individual clickable tool card with accessible interactions
-import React from 'react';
 import Link from 'next/link';
 
 export default function ToolCard({ tool }) {
   const Icon = tool.icon;
   return (
-    <Link
-      href={`/tools/${tool.id}`}
-      className="group block focus:outline-none focus:ring-2 focus:ring-brand-orange"
-    >
-      <article
-        aria-labelledby={`${tool.id}-title`}
-        className="relative rounded-lg border border-gray-200 bg-white p-6 shadow-sm transition-transform duration-300 hover:-translate-y-1 hover:shadow-lg"
-      >
-<div className="flex h-12 w-12 items-center justify-center rounded-full bg-brand-dark text-white logo-small">
-  <Icon className="h-6 w-6" aria-hidden="true" />
-</div>
-        <h2
-          id={`${tool.id}-title`}
-          className="mt-4 text-lg font-semibold text-brand-dark"
-        >
+    <Link href={`/tools/${tool.id}`} passHref>
+      <a className="group block rounded-lg border p-6 text-center transition-shadow hover:shadow-lg">
+        <div className="mx-auto mb-4 h-12 w-12 text-brand-orange group-hover:text-brand-dark">
+          <Icon className="h-12 w-12" aria-hidden />
+        </div>
+        <h3 className="text-lg font-semibold text-brand-dark group-hover:text-brand-orange">
           {tool.title}
-        </h2>
-        <p className="mt-1 text-sm text-gray-600">{tool.description}</p>
-        <span className="pointer-events-none absolute inset-0 rounded-lg border-2 border-transparent transition group-hover:border-brand-orange" />
-      </article>
+        </h3>
+        <p className="mt-2 text-gray-600">{tool.description}</p>
+      </a>
     </Link>
   );
 }
