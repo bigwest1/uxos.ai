@@ -24,25 +24,31 @@ export default function ResultsScreen({ onBack }) {
 
   return (
     <div>
-      <header>
+
+      <header className="flex items-center justify-between bg-brand-dark p-4 text-white">
         <button onClick={onBack} aria-label="Back">Back</button>
         <h2>Search Results</h2>
       </header>
 
-      <div className="results-grid">
+
+      <div className="grid grid-cols-1 gap-4 p-4 sm:grid-cols-2 md:grid-cols-3">
         {products.map((product) => (
-          <article key={product.id} className="product-card">
+ 
+          <article key={product.id} className="relative overflow-hidden rounded border border-gray-300">
             <img src={`/images/${product.id}.jpg`} alt={product.name} className="thumbnail" />
-            <div className="product-actions">
+
+            <div className="absolute right-2 top-2 flex gap-1">
               <button
-                className="action-button"
+
+                className="bg-white/90 p-1 px-2 hover:bg-brand-orange focus:bg-brand-orange hover:text-white focus:text-white"
                 aria-label="Pin to compare"
                 onClick={() => togglePin(product)}
               >
                 📌
               </button>
               <button
-                className="action-button"
+
+                className="bg-white/90 p-1 px-2 hover:bg-brand-orange focus:bg-brand-orange hover:text-white focus:text-white"
                 aria-label="Quick view"
                 onClick={() => setQuickView(product)}
               >
@@ -51,15 +57,17 @@ export default function ResultsScreen({ onBack }) {
             </div>
             <h3>{product.name}</h3>
             <p>{product.price}</p>
-            <button onClick={() => alert('Added to cart')}>
-              Add to Cart
-            </button>
+
+          <button className="mt-2 w-full bg-brand-orange py-1 text-white" onClick={() => alert('Added to cart')}>
+            Add to Cart
+          </button>
           </article>
         ))}
       </div>
 
       <button
-        className="filter-button"
+
+        className="fixed bottom-4 right-4 rounded-full bg-brand-orange p-3 text-white"
         aria-label="Filter results"
         onClick={() => setShowFilter(true)}
       >
@@ -67,7 +75,8 @@ export default function ResultsScreen({ onBack }) {
       </button>
 
       {pinned.length > 0 && (
-        <div className="compare-tray" aria-label="Comparison tray">
+
+        <div className="fixed bottom-0 left-0 right-0 flex items-center justify-between bg-brand-dark p-2 text-white" aria-label="Comparison tray">
           <span>{pinned.length} item(s) pinned</span>
           <button onClick={() => alert('Added all to cart')}>Add All to Cart</button>
         </div>

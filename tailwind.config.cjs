@@ -1,7 +1,15 @@
 module.exports = {
-  content: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
+  content: ['./pages/**/*.{js,jsx}', './components/**/*.{js,jsx}'],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'brand-dark': '#232F3E',
+        'brand-orange': '#FF9900',
+      },
+      fontFamily: {
+        sans: ['"Amazon Ember"', 'Arial', 'sans-serif'],
+      },
+    },
   },
   plugins: [],
 };

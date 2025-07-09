@@ -2,8 +2,12 @@ import React from 'react';
 
 export default function FilterOverlay({ onClose }) {
   return (
-    <div className="filter-overlay" role="dialog" aria-modal="true">
-      <div className="filter-panel">
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/60"
+      role="dialog"
+      aria-modal="true"
+    >
+      <div className="w-11/12 max-w-sm rounded bg-white p-4">
         <h3>Refine Results</h3>
         <label>
           Price Range
@@ -21,7 +25,12 @@ export default function FilterOverlay({ onClose }) {
             <option value="5">5★ only</option>
           </select>
         </label>
-        <button onClick={onClose}>Apply Filters</button>
+        <button
+          className="mt-4 bg-brand-orange px-3 py-2 text-white"
+          onClick={onClose}
+        >
+          Apply Filters
+        </button>
       </div>
     </div>
   );

@@ -1,6 +1,12 @@
-import '../styles/styles.css';
+import '../styles/gloabal.css'
+import ErrorBoundary from '../components/ErrorBoundary';
 
-
-export default function App({ Component, pageProps }) {
-  return <Component {...pageProps} />
+function App({ Component, pageProps }) {
+  return (
+    <ErrorBoundary>
+      <Component {...pageProps} />
+    </ErrorBoundary>
+  );
 }
+
+export default App;

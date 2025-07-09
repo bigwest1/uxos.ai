@@ -29,7 +29,7 @@ export default function VoiceSearchButton({ onResult }) {
   return (
     <button
       type="button"
-      className="voice-btn"
+      className="ml-2 rounded-full bg-brand-orange p-2 text-white"
       onClick={startListening}
       aria-pressed={listening}
       aria-label="Start voice search"
@@ -38,3 +38,5 @@ export default function VoiceSearchButton({ onResult }) {
     </button>
   );
 }
+
+

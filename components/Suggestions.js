@@ -1,4 +1,3 @@
-// Suggestions list with pin and dismiss features
 import React from 'react';
 
 export default function Suggestions({ query, onSelect, onPin }) {
@@ -18,11 +17,16 @@ export default function Suggestions({ query, onSelect, onPin }) {
   }
 
   return (
-    <ul id="suggestions-list" className="suggestions" role="listbox">
+
+    <ul
+      id="suggestions-list"
+      className="absolute z-10 w-full max-w-md border border-gray-300 bg-white"
+      role="listbox"
+    >
       {filtered.map((item, idx) => (
         <li
           key={idx}
-          className="suggestion-item flex justify-between items-center"
+          className="flex cursor-pointer items-center justify-between p-2 hover:bg-brand-orange hover:text-white focus:bg-brand-orange focus:text-white"
           tabIndex="0"
           role="option"
           onClick={() => onSelect(item)}
