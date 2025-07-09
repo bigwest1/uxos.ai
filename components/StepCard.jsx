@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { StarIcon, ChevronDownIcon } from '@heroicons/react/24/solid';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function StepCard({ step, index }) {
   const [open, setOpen] = useState(true);
@@ -23,8 +24,16 @@ export default function StepCard({ step, index }) {
           }`}
         />
       </button>
-      {open && (
-        <div className="space-y-4 border-t border-gray-700 p-5">
+      <AnimatePresence initial={false}>
+        {open && (
+          <motion.div
+            key="content"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3, ease: 'easeOut' }}
+            className="space-y-4 border-t border-gray-700 p-5"
+          >
           {(step.frames || step.image) && (
             <div className="grid grid-cols-2 gap-2">
               {(step.frames || [step.image]).map((src, i) => (
@@ -47,8 +56,9 @@ export default function StepCard({ step, index }) {
               ))}
             </div>
           )}
-        </div>
-      )}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
