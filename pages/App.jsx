@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import SearchScreen from './SearchScreen';
 import ResultsScreen from './ResultsScreen';
-import '@/styles/globals.css';
-import '@/styles/style.css';
+import '../styles/styles.css';
 
 
 class ErrorBoundary extends React.Component {
