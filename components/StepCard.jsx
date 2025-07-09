@@ -5,17 +5,17 @@ export default function StepCard({ step, index }) {
   const [open, setOpen] = useState(true);
 
   return (
-    <div className="rounded-lg border bg-white shadow-sm">
+    <div className="rounded-xl border border-gray-700 bg-gray-800 shadow-lg">
       <button
-        className="flex w-full items-center justify-between p-4 text-left"
+        className="flex w-full items-center justify-between p-5 text-left hover:bg-gray-700 transition-colors"
         onClick={() => setOpen(!open)}
         aria-expanded={open}
       >
-        <span className="flex items-center gap-2">
-          <span className="rounded bg-brand-orange px-2 py-1 text-sm font-bold text-white">
+        <span className="flex items-center gap-3">
+          <span className="flex h-6 w-6 items-center justify-center rounded-full bg-indigo-500 text-sm font-bold text-white">
             {index + 1}
           </span>
-          <span className="font-medium">{step.title}</span>
+          <span className="text-lg font-semibold text-gray-100">{step.title}</span>
         </span>
         <ChevronDownIcon
           className={`h-5 w-5 transition-transform ${
@@ -24,28 +24,26 @@ export default function StepCard({ step, index }) {
         />
       </button>
       {open && (
-        <div className="space-y-3 border-t p-4">
-          {step.frames
-            ? step.frames.map((src, i) => (
-                <img
-                  key={i}
-                  src={src}
-                  alt=""
-                  className="h-40 w-full rounded object-cover"
-                />
-              ))
-            : step.image && (
-                <img
-                  src={step.image}
-                  alt=""
-                  className="h-40 w-full rounded object-cover"
-                />
-              )}
-          <p className="text-sm text-gray-700">{step.summary}</p>
+        <div className="space-y-4 border-t border-gray-700 p-5">
+          {(step.frames || step.image) && (
+            <div className="grid grid-cols-2 gap-2">
+              {(step.frames || [step.image]).map((src, i) => (
+                src && (
+                  <img
+                    key={i}
+                    src={src}
+                    alt=""
+                    className="h-28 w-full rounded-lg object-cover"
+                  />
+                )
+              ))}
+            </div>
+          )}
+          <p className="mt-3 text-gray-300">{step.summary}</p>
           {step.rating && (
-            <div className="flex items-center gap-1">
+            <div className="mt-2 flex items-center gap-1">
               {Array.from({ length: step.rating }).map((_, i) => (
-                <StarIcon key={i} className="h-4 w-4 text-yellow-500" />
+                <StarIcon key={i} className="h-5 w-5 text-yellow-400" />
               ))}
             </div>
           )}

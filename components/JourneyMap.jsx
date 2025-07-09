@@ -11,15 +11,15 @@ export default function JourneyMap({ steps, onReorder }) {
   };
 
   return (
-    <section className="space-y-6">
-      <h2 className="text-xl font-semibold text-brand-dark">Original Flow</h2>
+    <section className="space-y-8">
+      <h2 className="text-2xl font-bold text-white">Original Flow</h2>
       <DragDropContext onDragEnd={handleDragEnd}>
         <Droppable droppableId="journey">
           {(provided) => (
             <div
               {...provided.droppableProps}
               ref={provided.innerRef}
-              className="space-y-4"
+              className="space-y-6"
             >
               {steps.map((step, idx) => (
                 <Draggable key={idx} draggableId={`step-${idx}`} index={idx}>

@@ -5,15 +5,15 @@ export default function ToolCard({ tool }) {
   return (
     <Link
       href={`/tools/${tool.id}`}
-      className="group block rounded-lg border p-6 text-center transition-shadow hover:shadow-lg"
+      className="group block rounded-xl bg-gray-800 p-8 text-center transition-transform hover:-translate-y-2 hover:shadow-2xl"
     >
-      <div className="mx-auto mb-4 h-12 w-12 text-brand-orange group-hover:text-brand-dark">
+      <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center text-indigo-400">
         <Icon className="h-12 w-12" aria-hidden />
       </div>
-      <h3 className="text-lg font-semibold text-brand-dark group-hover:text-brand-orange">
+      <h3 className="text-lg font-bold text-white group-hover:text-indigo-300">
         {tool.title}
       </h3>
-      <p className="mt-2 text-gray-600">{tool.description}</p>
+      <p className="mt-2 text-gray-400">{tool.description}</p>
     </Link>
   );
 }

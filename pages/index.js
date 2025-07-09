@@ -17,19 +17,19 @@ export default function Home() {
 
           <main className="min-h-screen flex flex-col">
         {/* Hero section */}
-        <section className="relative bg-gradient-to-b from-brand-dark to-gray-900 text-white text-center">
-          <div className="mx-auto max-w-5xl px-4 py-20">
-            <h1 className="text-4xl font-bold sm:text-5xl animate-fade-in">
-              Level Up Your UX Workflow
+        <section className="relative bg-gray-900 text-gray-100 text-center">
+          <div className="mx-auto max-w-4xl px-6 py-32">
+            <h1 className="text-5xl font-extrabold leading-tight md:text-6xl animate-fade-in">
+              Hack Your UX Flow
             </h1>
-            <p className="mt-4 text-lg text-gray-300">
-              Explore AI-powered tools to craft exceptional experiences
+            <p className="mt-6 text-xl text-gray-300">
+              Instant AI‑powered analysis and redesign of competitor flows.
             </p>
             <a
               href="#tools"
-              className="mt-8 inline-block rounded-md bg-brand-orange px-6 py-3 font-semibold shadow-lg transition-transform duration-300 hover:scale-105"
+              className="mt-10 inline-block rounded-full bg-indigo-500 px-8 py-4 text-lg font-semibold text-white shadow-lg transition-transform hover:scale-105"
             >
-              Explore Tools
+              Get Started
             </a>
           </div>
         </section>

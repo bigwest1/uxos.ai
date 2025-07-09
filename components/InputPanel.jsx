@@ -53,19 +53,17 @@ export default function InputPanel({ onSubmit }) {
   };
 
   return (
-    <section className="space-y-4 rounded-lg border p-6 shadow-sm">
-      <h2 className="text-xl font-semibold text-brand-dark">
-        1. Paste competitor flow
-      </h2>
+    <section className="space-y-6 rounded-xl border border-gray-700 bg-gray-800 p-8 shadow-2xl">
+      <h2 className="text-2xl font-bold text-white">1. Competitor Flow</h2>
       <textarea
-        className="w-full rounded border p-3"
+        className="w-full rounded-lg bg-gray-700 border border-gray-600 p-4 text-gray-100 placeholder-gray-400 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500"
         rows={6}
         placeholder="Step 1: …&#10;Step 2: …"
         value={text}
         onChange={(e) => setText(e.target.value)}
       />
       <input
-        className="w-full rounded border p-3"
+        className="w-full rounded-lg bg-gray-700 border border-gray-600 p-4 text-gray-100 placeholder-gray-400 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500"
         type="text"
         placeholder="Link to screenshots or video (optional)"
         value={link}
@@ -74,15 +72,15 @@ export default function InputPanel({ onSubmit }) {
       <div
         onDrop={handleDrop}
         onDragOver={handleDragOver}
-        className="flex h-32 w-full items-center justify-center rounded border-2 border-dashed"
+        className="flex h-40 w-full items-center justify-center rounded-lg border-2 border-gray-600 bg-gray-700 text-gray-400"
       >
         {frames.length > 0
           ? `${frames.length} frame${frames.length > 1 ? 's' : ''} loaded`
-          : 'Drag images or a video here'}
+          : 'Drag & drop screenshots or video here'}
       </div>
       <button
         onClick={handleSubmit}
-        className="rounded bg-brand-orange px-4 py-2 font-semibold text-white hover:opacity-90"
+        className="w-full rounded-lg bg-indigo-500 px-6 py-3 font-semibold text-white shadow hover:bg-indigo-600 transition-all"
       >
         Analyze Flow
       </button>
