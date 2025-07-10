@@ -2,10 +2,11 @@ import useSWR from 'swr';
 import Head from 'next/head';
 import Link from 'next/link';
 import { useUser } from '@clerk/nextjs';
+import ProtectedPage from '../../../components/ProtectedPage';
 
 const fetcher = (url) => fetch(url).then((r) => r.json());
 
-export default function OrgIndexPage() {
+function OrgIndexPage() {
   const { user, isSignedIn } = useUser();
   const { data, error } = useSWR(isSignedIn ? '/api/admin/organizations' : null, fetcher);
   if (!isSignedIn) return <p className="p-6">Sign in to view your organizations.</p>;
@@ -29,3 +30,5 @@ export default function OrgIndexPage() {
     </>
   );
 }
+
+export default ProtectedPage(OrgIndexPage);

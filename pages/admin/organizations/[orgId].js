@@ -2,11 +2,12 @@ import { useRouter } from 'next/router';
 import useSWR from 'swr';
 import Head from 'next/head';
 import { useUser } from '@clerk/nextjs';
+import ProtectedPage from '../../../components/ProtectedPage';
 import { useState } from 'react';
 
 const fetcher = (url) => fetch(url).then((r) => r.json());
 
-export default function OrgDetailPage() {
+function OrgDetailPage() {
   const router = useRouter();
   const { orgId } = router.query;
   const { user, isSignedIn } = useUser();
@@ -82,4 +83,7 @@ export default function OrgDetailPage() {
       </main>
     </>
   );
+
 }
+
+export default ProtectedPage(OrgDetailPage);

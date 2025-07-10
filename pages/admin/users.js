@@ -1,10 +1,11 @@
 import useSWR from 'swr';
 import Head from 'next/head';
 import { useUser } from '@clerk/nextjs';
+import ProtectedPage from '../../components/ProtectedPage';
 
 const fetcher = (url) => fetch(url).then((r) => r.json());
 
-export default function AdminUsersPage() {
+function AdminUsersPage() {
   const { user, isSignedIn } = useUser();
   const { data, error } = useSWR(isSignedIn ? '/api/admin/users' : null, fetcher);
 
@@ -34,4 +35,7 @@ export default function AdminUsersPage() {
       </main>
     </>
   );
+
 }
+
+export default ProtectedPage(AdminUsersPage);

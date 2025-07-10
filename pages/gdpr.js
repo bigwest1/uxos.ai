@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import Head from 'next/head';
 import { useUser } from '@clerk/nextjs';
+import ProtectedPage from '../components/ProtectedPage';
 
-export default function GDPRPage() {
+function GDPRPage() {
   const { user } = useUser();
   const [exportData, setExportData] = useState(null);
   const [status, setStatus] = useState('');
@@ -54,3 +55,4 @@ export default function GDPRPage() {
     </>
   );
 }
+export default ProtectedPage(GDPRPage);
