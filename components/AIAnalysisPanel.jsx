@@ -11,32 +11,25 @@ export default function AIAnalysisPanel({ steps, onResult }) {
 
   const handleAnalyze = async () => {
     setLoading(true);
-    // Dispatch job to queue
-    const res = await fetch('/api/analysis', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ steps }),
-    });
-    const { jobId } = await res.json();
-    // Poll job status
-    let poll;
-    const pollJob = async () => {
-      const status = await fetch(`/api/analysis/${jobId}`);
-      const { state, progress, result } = await status.json();
+    try {
+      const res = await fetch('/api/analysis', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ steps }),
+      });
+      const { result } = await res.json();
+      setAnalysis({
+        summary: result.summary,
+        stepInsights: result.stepInsights,
+        improvedSteps: result.improvedSteps,
+        abIdeas: result.abIdeas,
+      });
+      onResult({ improvedSteps: result.improvedSteps, abIdeas: result.abIdeas });
+    } catch (err) {
+      console.error('Analysis failed', err);
+    } finally {
       setLoading(false);
-      setAnalysisCtrl((prev) => ({ state, progress }));
-      if (state === 'completed' && result) {
-        setAnalysis({
-          summary: result.summary,
-          stepInsights: result.stepInsights,
-          improvedSteps: result.improvedSteps,
-          abIdeas: result.abIdeas,
-        });
-        onResult({ improvedSteps: result.improvedSteps, abIdeas: result.abIdeas });
-        clearInterval(poll);
-      }
-    };
-    poll = setInterval(pollJob, 1000);
+    }
   };
 
   return (
