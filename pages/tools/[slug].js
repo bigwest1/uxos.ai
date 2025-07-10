@@ -7,6 +7,8 @@ import AIAnalysisPanel from '../../components/AIAnalysisPanel';
 import RedesignedFlow from '../../components/RedesignedFlow';
 import ABTestIdeas from '../../components/ABTestIdeas';
 import ChatPanel from '../../components/ChatPanel';
+import PersonaReactor from '../../components/PersonaReactor';
+import PatternMiner from '../../components/PatternMiner';
 import FadeInSection from '../../components/FadeInSection';
 
 export async function getStaticPaths() {
@@ -46,7 +48,7 @@ export default function ToolPage({ tool }) {
       <Head>
         <title>{tool.title} - UXOS Tools</title>
       </Head>
-      <main className="flex min-h-screen flex-col items-center justify-center p-8">
+      <main className="mx-auto max-w-3xl space-y-8 p-6">
         <div className="flex flex-col items-center space-y-4 text-center">
           <div className="flex h-16 w-16 items-center justify-center rounded-full bg-brand-dark text-white">
             <Icon className="h-8 w-8" aria-hidden="true" />
@@ -54,6 +56,8 @@ export default function ToolPage({ tool }) {
           <h1 className="text-2xl font-bold text-brand-dark">{tool.title}</h1>
           <p className="text-gray-700">{tool.description}</p>
         </div>
+        {tool.id === 'persona' && <PersonaReactor />}
+        {tool.id === 'patterns' && <PatternMiner />}
       </main>
     </>
   );
