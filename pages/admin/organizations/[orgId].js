@@ -3,6 +3,7 @@ import useSWR from 'swr';
 import Head from 'next/head';
 import { useUser } from '@clerk/nextjs';
 import ProtectedPage from '../../../components/ProtectedPage';
+import RequireRole from '../../../components/RequireRole';
 import { useState } from 'react';
 
 const fetcher = (url) => fetch(url).then((r) => r.json());
@@ -46,6 +47,7 @@ function OrgDetailPage() {
             <li key={m.id}>{m.user.email} ({m.role})</li>
           ))}
         </ul>
+        <RequireRole orgId={orgId} role="admin">
         <div className="mt-6 space-y-4">
           <div>
             <label className="block text-sm">Data Retention (days):</label>
@@ -80,6 +82,7 @@ function OrgDetailPage() {
             </button>
           </div>
         </div>
+        </RequireRole>
       </main>
     </>
   );
