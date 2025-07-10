@@ -1,7 +1,8 @@
 import '../styles/global.css';
 import ErrorBoundary from '../components/ErrorBoundary';
 import { ClerkProvider } from '@clerk/nextjs';
- import { AIProvider } from '../contexts/AIContext';
+import { AIProvider } from '../contexts/AIContext';
+import { AppBuilderProvider } from '../contexts/AppBuilderContext';
 import { AnalyticsProvider } from '../contexts/AnalyticsContext';
 import { ThemeProvider } from '../contexts/ThemeContext';
 import { loadStripe } from '@stripe/stripe-js';
@@ -31,12 +32,14 @@ function App({ Component, pageProps }) {
         <Elements stripe={stripePromise}>
           <ThemeProvider>
             <AnalyticsProvider>
-              <AIProvider>
-                <div className="bg-gray-900 text-gray-100 min-h-screen font-sans">
-                  <Header />
-                  <Component {...pageProps} />
-                </div>
-              </AIProvider>
+              <AppBuilderProvider>
+                <AIProvider>
+                  <div className="bg-gray-900 text-gray-100 min-h-screen font-sans">
+                    <Header />
+                    <Component {...pageProps} />
+                  </div>
+                </AIProvider>
+              </AppBuilderProvider>
             </AnalyticsProvider>
           </ThemeProvider>
         </Elements>
