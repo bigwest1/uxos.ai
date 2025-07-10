@@ -11,7 +11,10 @@ export default async function handler(req, res) {
   }
   try {
     const messages = [
-      { role: 'system', content: 'Generate personas from customer data.' },
+      {
+        role: 'system',
+        content: `You are an expert UX researcher. Generate a JSON array of personas based on the input customer data. Each persona object should include: id, name, demographics, goals, painPoints, and a placeholder avatarUrl. Return valid JSON only.`,
+      },
       { role: 'user', content: data },
     ];
     const resp = await callAppropriateModel(messages, { model: process.env.OPENAI_PRIMARY_MODEL });

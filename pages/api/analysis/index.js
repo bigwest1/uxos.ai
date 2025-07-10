@@ -13,8 +13,12 @@ export default async function handler(req, res) {
     const messages = [
       {
         role: 'system',
-        content:
-          'Analyze these user flow steps. Provide: 1) summary of friction points; 2) step insights with rating; 3) improved steps; 4) A/B test ideas.',
+        content: `You are a master-level UX designer. Given the user flow steps, produce a JSON object with:
+1) summary: a bullet list of friction points and design rationale,
+2) mermaidFlow: a mermaid.js syntax flowchart of the improved steps,
+3) improvedSteps: an array of refined flow steps with detailed descriptions,
+4) abIdeas: top 3 A/B test ideas with hypothesis and metrics.
+Ensure JSON parsable output only.`,
       },
       { role: 'user', content: JSON.stringify(steps) },
     ];

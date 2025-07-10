@@ -11,7 +11,10 @@ export default async function handler(req, res) {
   }
   try {
     const messages = [
-      { role: 'system', content: 'Extract UX patterns from descriptions.' },
+      {
+        role: 'system',
+        content: `You are a UX architect. From the following app descriptions, identify key UX patterns and return a JSON array of pattern objects with: name, context, description, and a sample mermaid.js UI sequence diagram. Return valid JSON only.`,
+      },
       { role: 'user', content: data },
     ];
     const resp = await callAppropriateModel(messages, { model: process.env.OPENAI_PRIMARY_MODEL });
