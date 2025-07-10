@@ -5,6 +5,7 @@ import { AIProvider } from '../contexts/AIContext';
 import { ThemeProvider } from '../contexts/ThemeContext';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
+import Header from '../components/Header';
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
 
@@ -16,6 +17,7 @@ function App({ Component, pageProps }) {
           <ThemeProvider>
             <AIProvider>
               <div className="bg-gray-900 text-gray-100 min-h-screen font-sans">
+                <Header />
                 <Component {...pageProps} />
               </div>
             </AIProvider>
