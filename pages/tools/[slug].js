@@ -74,9 +74,17 @@ function FlowHacker() {
   const [steps, setSteps] = useState([]);
   const [analysis, setAnalysis] = useState(null);
 
-  const handleInput = ({ text = '' }) => {
-    if (!text || typeof text !== 'string') {
-      console.error('Input text must be a string.');
+  const handleInput = (input) => {
+    // Accept either an array of steps (with optional images) or plain text input
+    if (Array.isArray(input)) {
+      setSteps(input);
+      return;
+    }
+    const text = typeof input.text === 'string' ? input.text : '';
+    if (!text) {
+      console.error(
+        'Input must be a non-empty string (competitor flow) or an array of steps.'
+      );
       return;
     }
     const parsed = text
