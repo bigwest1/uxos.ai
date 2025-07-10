@@ -64,38 +64,38 @@ export default function InputPanel({ onSubmit }) {
     <>
       <ShortcutHotkeys onSend={handleSubmit} onClear={handleClear} />
       <section className="card space-y-6">
-      <h2 className="text-2xl font-bold text-white">1. Competitor Flow</h2>
-      <textarea
-        className="w-full rounded-lg bg-gray-700 border border-gray-600 p-4 text-gray-100 placeholder-gray-400 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500"
-        rows={6}
-        placeholder="Step 1: …&#10;Step 2: …"
-        value={text}
-        onChange={(e) => setText(e.target.value)}
-      />
-      <PromptTemplateSelector onSelect={(tpl) => setText((t) => `${tpl}: ${t}`)} />
-      <input
-        className="w-full rounded-lg bg-gray-700 border border-gray-600 p-4 text-gray-100 placeholder-gray-400 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500"
-        type="text"
-        placeholder="Link to screenshots or video (optional)"
-        value={link}
-        onChange={(e) => setLink(e.target.value)}
-      />
-      <div
-        onDrop={handleDrop}
-        onDragOver={handleDragOver}
-        className="flex h-40 w-full items-center justify-center rounded-lg border-2 border-gray-600 bg-gray-700 text-gray-400"
-      >
-        {frames.length > 0
-          ? `${frames.length} frame${frames.length > 1 ? 's' : ''} loaded`
-          : 'Drag & drop screenshots or video here'}
-      </div>
-      <button
-        onClick={handleSubmit}
-        className="w-full rounded-lg bg-indigo-500 px-6 py-3 font-semibold text-white shadow hover:bg-indigo-600 transition-all"
-      >
-        Analyze Flow
-      </button>
-    </section>
+        <h2 className="text-2xl font-bold text-white">1. Competitor Flow</h2>
+        <textarea
+          className="w-full rounded-lg bg-gray-700 border border-gray-600 p-4 text-gray-100 placeholder-gray-400 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500"
+          rows={6}
+          placeholder="Step 1: …&#10;Step 2: …"
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+        />
+        <PromptTemplateSelector onSelect={(tpl) => setText((t) => `${tpl}: ${t}`)} />
+        <input
+          className="w-full rounded-lg bg-gray-700 border border-gray-600 p-4 text-gray-100 placeholder-gray-400 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500"
+          type="text"
+          placeholder="Link to screenshots or video (optional)"
+          value={link}
+          onChange={(e) => setLink(e.target.value)}
+        />
+        <div
+          onDrop={handleDrop}
+          onDragOver={handleDragOver}
+          className="flex h-40 w-full items-center justify-center rounded-lg border-2 border-gray-600 bg-gray-700 text-gray-400"
+        >
+          {frames.length > 0
+            ? `${frames.length} frame${frames.length > 1 ? 's' : ''} loaded`
+            : 'Drag & drop screenshots or video here'}
+        </div>
+        <button
+          onClick={handleSubmit}
+          className="w-full rounded-lg bg-indigo-500 px-6 py-3 font-semibold text-white shadow hover:bg-indigo-600 transition-all"
+        >
+          Analyze Flow
+        </button>
+      </section>
     </>
   );
 }
