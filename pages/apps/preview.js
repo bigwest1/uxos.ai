@@ -3,7 +3,7 @@ import { useAppBuilder } from '../../contexts/AppBuilderContext';
 import Mermaid from 'react-mermaid2';
 
 export default function PreviewPage() {
-  const { blueprint } = useAppBuilder();
+  const { blueprint, setBlueprint } = useAppBuilder();
   if (!blueprint) return <p className="p-6">No app blueprint found. Please generate one first.</p>;
 
   return (
@@ -72,13 +72,23 @@ export default function PreviewPage() {
             <Mermaid chart={pg.mermaidFlow} />
           </section>
         ))}
-        <section className="flex gap-2">
-          {blueprint.monetizationOptions.map((opt) => (
-            <button key={opt} className="btn btn-primary">
-              {opt === 'subscription' ? 'Subscribe' : 'Buy Now'}
-            </button>
-          ))}
-        </section>
+        <PaymentSection options={blueprint.monetizationOptions} appId={blueprint.id} />
+        <button
+          onClick={async () => {
+            const { description, style } = blueprint;
+            const resp = await fetch('/api/templates', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ description, style, blueprint }),
+            });
+            const data = await resp.json();
+            setBlueprint({ ...blueprint, id: data.id });
+            alert('Template published!');
+          }}
+          className="mt-4 btn btn-outline"
+        >
+          Publish Template
+        </button>
       </main>
     </>
   );
