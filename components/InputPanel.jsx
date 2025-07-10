@@ -96,5 +96,6 @@ export default function InputPanel({ onSubmit }) {
         Analyze Flow
       </button>
     </section>
+    </>
   );
 }

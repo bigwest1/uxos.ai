@@ -1,10 +1,10 @@
 import { getAuth } from '@clerk/nextjs/server';
 import { PrismaClient } from '@prisma/client';
 import { OpenAI } from 'openai';
-import { getAbTestStats } from '../../../helpers/abTestService';
-import { callAppropriateModel } from '../../../lib/llmRouter';
-import { withMetrics } from '../../../lib/observability';
-import { rateLimit } from '../../../lib/rateLimiter';
+import { getAbTestStats } from '../../../../helpers/abTestService';
+import { callAppropriateModel } from '../../../../lib/llmRouter';
+import { withMetrics } from '../../../../lib/observability';
+import { rateLimit } from '../../../../lib/rateLimiter';
 
 const prisma = new PrismaClient();
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
@@ -32,6 +32,8 @@ export default async function handler(req, res) {
   });
   if (!convo) return res.status(404).end('Conversation not found');
 
+  // Prepare messages for prompting, with optional contextual embeddings
+  const promptMessages = convo.messages.map((m) => ({ role: m.role, content: m.content }));
   // Semantic retrieval from local Prisma embeddings
   const embs = await prisma.messageEmbedding.findMany({
     where: { conversationId: Number(id) },
@@ -52,7 +54,6 @@ export default async function handler(req, res) {
       .map((e) => e.text);
     promptMessages.unshift({ role: 'system', content: 'Relevant context:\n' + scored.join('\n') });
   }
-  if (!convo) return res.status(404).end('Not found');
 
   // SSE headers
   res.writeHead(200, {
@@ -61,7 +62,6 @@ export default async function handler(req, res) {
     Connection: 'keep-alive',
   });
 
-  const prompt = convo.messages.map((m) => ({ role: m.role, content: m.content }));
   // Choose model dynamically: heavier history uses fallback to control cost
   const model = convo.messages.length > 20
     ? process.env.OPENAI_FALLBACK_MODEL || 'gpt-3.5-turbo'
