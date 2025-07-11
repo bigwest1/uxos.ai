@@ -5,6 +5,7 @@ import ToolMenu from '../components/ToolMenu.jsx';
 import DownloadButton from '../components/DownloadButton.jsx';
 import { useUser } from '@clerk/nextjs';
 import ThemeSwitcher from '../components/ThemeSwitcher.jsx';
+import FortuneTeller from '../components/FortuneTeller.jsx';
 
 /**
  * Show a subscription CTA and redirect to Stripe checkout.
@@ -75,6 +76,13 @@ export default function Home() {
               <div className="w-full h-64 rounded-lg bg-gray-700 animate-pulse" />
             </div>
           </div>
+          </section>
+        </FadeInSection>
+
+        {/* Quantum Fortune Teller module */}
+        <FadeInSection>
+          <section className="container mx-auto py-16">
+            <FortuneTeller />
           </section>
         </FadeInSection>
 
