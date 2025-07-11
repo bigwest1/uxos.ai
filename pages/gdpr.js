@@ -3,6 +3,7 @@ import Head from 'next/head';
 import { useUser } from '@clerk/nextjs';
 import ProtectedPage from '../components/ProtectedPage';
 
+export const dynamic = 'force-dynamic';
 function GDPRPage() {
   const { user } = useUser();
   const [exportData, setExportData] = useState(null);

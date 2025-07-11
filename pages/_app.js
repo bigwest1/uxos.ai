@@ -11,6 +11,7 @@ import Header from '../components/Header';
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
 
+export const dynamic = 'force-dynamic';
 function App({ Component, pageProps }) {
   const clerkAppearance = {
     // global Clerk UI theming
