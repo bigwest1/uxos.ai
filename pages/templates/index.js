@@ -1,7 +1,12 @@
 import { useEffect, useState } from 'react';
 import Head from 'next/head';
 
+import { useAppBuilder } from '../../contexts/AppBuilderContext';
+import { useRouter } from 'next/router';
+
 export default function TemplatesPage() {
+  const { setBlueprint } = useAppBuilder();
+  const router = useRouter();
   const [templates, setTemplates] = useState([]);
 
   useEffect(() => {
@@ -37,6 +42,17 @@ export default function TemplatesPage() {
                 className="btn btn-outline text-red-600"
               >
                 Delete
+              </button>
+              <button
+                onClick={async () => {
+                  const resp = await fetch(`/api/templates/${tpl.id}`);
+                  const { description, style, blueprint } = await resp.json();
+                  setBlueprint(blueprint);
+                  window.location.assign('/apps/preview');
+                }}
+                className="btn btn-secondary"
+              >
+                Fork
               </button>
             </div>
           </div>
