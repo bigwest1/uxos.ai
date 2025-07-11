@@ -18,21 +18,24 @@ export default function PreviewPage() {
           <div className="flex items-center space-x-4">
             <label className="flex flex-col items-center cursor-pointer">
               <span className="text-sm mb-1">Logo Upload</span>
-              <input
-                type="file"
-                accept="image/*"
-                className="hidden"
-                onChange={(e) => {
-                  const file = e.target.files?.[0];
-                  if (file) {
-                    const reader = new FileReader();
-                    reader.onload = () => {
-                      setBlueprint({ ...blueprint, logoUrl: reader.result });
-                    };
-                    reader.readAsDataURL(file);
-                  }
-                }}
-              />
+            <input
+              type="file"
+              accept="image/*"
+              className="hidden"
+              onChange={async (e) => {
+                const file = e.target.files?.[0];
+                if (file) {
+                  const formData = new FormData();
+                  formData.append('file', file);
+                  const resp = await fetch('/api/upload-logo', {
+                    method: 'POST',
+                    body: formData,
+                  });
+                  const { url } = await resp.json();
+                  setBlueprint({ ...blueprint, logoUrl: url });
+                }
+              }}
+            />
               <div className="h-10 w-10 bg-gray-200 rounded-full flex items-center justify-center">
                 {blueprint.logoUrl ? (
                   <img src={blueprint.logoUrl} alt="logo" className="h-10 w-10 rounded-full" />
