@@ -6,6 +6,7 @@ import DownloadButton from '../components/DownloadButton.jsx';
 import { useUser } from '@clerk/nextjs';
 import ThemeSwitcher from '../components/ThemeSwitcher.jsx';
 import FortuneTeller from '../components/FortuneTeller.jsx';
+import DecisionLab from '../components/DecisionLab.jsx';
 
 /**
  * Show a subscription CTA and redirect to Stripe checkout.
@@ -80,9 +81,16 @@ export default function Home() {
         </FadeInSection>
 
         {/* Quantum Fortune Teller module */}
+       <FadeInSection>
+         <section className="container mx-auto py-16">
+           <FortuneTeller />
+         </section>
+       </FadeInSection>
+
+        {/* Quantum Revenue Simulator */}
         <FadeInSection>
           <section className="container mx-auto py-16">
-            <FortuneTeller />
+            <DecisionLab />
           </section>
         </FadeInSection>
 
